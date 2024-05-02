@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TV Channel</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        header, #channel-list, footer {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+        }
+
+        a {
+            color: #0597ff;
+        }
+
+        #video-container {
+            width: 80%;
+            margin: 20px auto;
+            border: 1px solid #333;
+        }
+
+        video {
+            width: 100%; /* Set video width to 100% of its container */
+            height: 56.25%; /* Set video height to 56.25% of its container */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        li {
+            margin: 10px;
+        }
+
+        .channel-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            overflow: hidden;
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .channel-button img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Live TV Channel</h1>
+        <h1 style="color:#0597ff;">Made By Md.Fahim Sarker</h1>
+    </header>
+
+    <section id="video-container">
+        <video controls autoplay>
+    <source src="assets/Coming_soon.mp4" type="application/x-mpegURL">
+  </video>
+    </section>
+    <section id="channel-list">
+        <ul>
+            <li>
+                <a href="#" onclick="changeChannel('channel1')" class="channel-button">
+                    <img src="channel1_image.png" alt="Channel 1">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel2')" class="channel-button">
+                    <img src="channel2_image.png" alt="Channel 2">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel3')" class="channel-button">
+                    <img src="channel3_image.png" alt="Channel 3">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel4')" class="channel-button">
+                    <img src="channel4_image.png" alt="Channel 4">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel5')" class="channel-button">
+                    <img src="channel5_image.png" alt="Channel 5">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel6')" class="channel-button">
+                    <img src="channel6_image.png" alt="Channel 6">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel7')" class="channel-button">
+                    <img src="channel7_image.png" alt="Channel 7">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel8')" class="channel-button">
+                    <img src="channel8_image.png" alt="Channel 8">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel9')" class="channel-button">
+                    <img src="channel9_image.png" alt="Channel 9">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel10')" class="channel-button">
+                    <img src="channel10_image.png" alt="Channel 10">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel11')" class="channel-button">
+                    <img src="channel11_image.png" alt="Channel 11">
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeChannel('channel12')" class="channel-button">
+                    <img src="channel12_image.png" alt="Channel 12">
+                </a>
+            </li>
+        </ul>
+    </section>
+    <footer>
+      <p>&copy; 2024 Live TV Channel</p>
+    </footer>
+
+    <script>
+      function changeChannel(channel) {
+        fetch(`/switchChannel/${channel}`)
+          .then(response => response.json())
+          .then(data => {
+            const videoPlayer = document.querySelector('video');
+            videoPlayer.src = data.liveStreamUrl;
+            videoPlayer.load();
+            videoPlayer.play();
+          })
+          .catch(error => console.error('Error switching channel:', error));
+      }
+
+      function adjustPlayerSize(videoElement) {
+        // Set a fixed size for the video player when it starts playing
+        videoElement.style.width = '100%';
+        videoElement.style.height = '56.25';
+      }
+    </script>
+<script src="../index.js"></script>
+    </body>
+
+    </html>
